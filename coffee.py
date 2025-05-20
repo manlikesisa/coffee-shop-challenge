@@ -1,16 +1,18 @@
-class Coffee :
-    def__init__(self,name)
-    if not isinstance(name,str):
-        raise TypeError("Name must be a string")
-        if len(name) <3:
-         raise ValueError("Name must be at least 3 characters long")
-    self.name = name
+class Coffee:
+    def __init__(self, name):
+        self._name = None
+        self.name = name 
+    @property
+    def name(self):
+        return self._name
 
-
-
-@property
-   def name(self):
-    return self.name
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str):
+            raise TypeError("Name must be a string")
+        if len(value) < 3:
+            raise ValueError("Name must be at least 3 characters long")
+        self._name = value
 
     def orders(self):
         return [order for order in Order._all_orders if order.coffee is self]

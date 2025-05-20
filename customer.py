@@ -1,20 +1,18 @@
-class Customer :
-    def__init__(self,name):
-    self.name = name
+class Customer:
+    def __init__(self, name):
+        self._name = None
+        self.name = name  
 
-
-
-   @property
-   def name(self):
-   return self.name:
+    @property
+    def name(self):
+        return self._name
 
     @name.setter
-   def name(self,value):
-    if isinstance(value, str) and 1<= len(value) <=15:
-        self.name = value
+    def name(self, value):
+        if isinstance(value, str) and 1 <= len(value) <= 15:
+            self._name = value
         else:
-            raise ValueError ("Name should be between 1 and 15 characters")
-            self.name = value
+            raise ValueError("Name should be a string between 1 and 15 characters.")
 
     def orders(self):
         return [order for order in Order._all_orders if order.customer is self]
@@ -25,7 +23,6 @@ class Customer :
     def create_order(self, coffee, price):
         return Order(self, coffee, price)
 
-    
     @classmethod
     def most_aficionado(cls, coffee):
         if not isinstance(coffee, Coffee):
